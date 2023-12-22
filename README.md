@@ -1,17 +1,17 @@
-# Desafío Técnico: Gestión de Tareas con Spring Boot y Java 8
+# Desafío Técnico: Gestión de Tareas con Spring Boot y Java
 
 La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
 
 ## Objetivo:
-Crear una API RESTful utilizando Spring Boot 2.5.4 que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
+Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
 
 ## Requisitos Técnicos:
 ### Java:
-- Utiliza Java 8 para la implementación.
-- Utiliza las características de Java 8, como lambdas y streams, cuando sea apropiado.
+- Utiliza Java 17 para la implementación.
+- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
 
-### Spring Boot 2.5.4:
-- Construye la aplicación utilizando Spring Boot 2.5.4 o una version superior 2.X.X que soporte java 8.
+### Spring Boot 2.7.x:
+- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
 
 ### Base de Datos:
 
@@ -63,5 +63,5 @@ Se evaluará la solución en función de los siguientes criterios:
 
 - Correcta implementación de las funcionalidades solicitadas.
 - Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 8, Spring Boot 2.5.4, H2, JWT, OpenAPI y Swagger.
+- Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
 - Claridad y completitud de la documentación.
