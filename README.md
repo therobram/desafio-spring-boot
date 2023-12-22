@@ -53,7 +53,8 @@ Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tarea
 
 ## Entregables:
 ### Repositorio de GitHub:
-- Proporciona un enlace al repositorio de GitHub que contenga el código fuente.
+- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
+- Todos los PR serán rechazados, no es un indicador de la prueba.
 
 ### Documentación:
 - Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
