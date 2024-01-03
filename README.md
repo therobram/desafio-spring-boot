@@ -9,6 +9,7 @@ Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tarea
 ### Java:
 - Utiliza Java 17 para la implementación.
 - Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
+- Utilizar Maven como gestor de dependencias
 
 ### Spring Boot 2.7.x:
 - Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
