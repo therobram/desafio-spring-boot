@@ -34,7 +34,7 @@ Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tarea
 
 ## Funcionalidades:
 ### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT.
+- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
 
 ### CRUD de Tareas:
 - Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
@@ -45,6 +45,7 @@ Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tarea
 
 ### Documentación:
 - Utiliza OpenAPI y Swagger para documentar claramente la API.
+- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
 
 ### Código Limpio:
 - Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
@@ -59,6 +60,7 @@ Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tarea
 
 ### Documentación:
 - Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
+- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
 
 ## Evaluación:
 Se evaluará la solución en función de los siguientes criterios:
@@ -67,3 +69,4 @@ Se evaluará la solución en función de los siguientes criterios:
 - Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
 - Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
 - Claridad y completitud de la documentación.
+- **Puntos extras si la generación de la API se realizo mediante API First**
