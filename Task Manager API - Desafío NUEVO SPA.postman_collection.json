@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "cc7142fc-3d32-47e2-96d4-285e4265fe22",
+		"name": "Task Manager API - Desafío NUEVO SPA",
+		"description": "Colección para probar endpoints de autenticación y gestión de tareas con JWT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "91951"
+	},
+	"item": [
+		{
+			"name": "1 - Login (obtener JWT)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/auth/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2 - Obtener todas las tareas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0Mzk5NzY5MiwiZXhwIjoxNzQ0MDg0MDkyfQ.bDiEvZzkwFeMwSo-_I7728IEGCvxA_W8tMyxmJWNNN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/tasks",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 - Obtener tarea por ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0Mzk5NzY5MiwiZXhwIjoxNzQ0MDg0MDkyfQ.bDiEvZzkwFeMwSo-_I7728IEGCvxA_W8tMyxmJWNNN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/tasks/3",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tasks",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4 - Crear tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0Mzk5NzY5MiwiZXhwIjoxNzQ0MDg0MDkyfQ.bDiEvZzkwFeMwSo-_I7728IEGCvxA_W8tMyxmJWNNN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Estudiar Spring Boot 5\",\n  \"description\": \"Revisar cómo funciona JPA y JWT\",\n  \"statusId\": 1\n}"
+				},
+				"url": {
+					"raw": "{{host}}/tasks",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5 - Actualizar tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0Mzk5NzY5MiwiZXhwIjoxNzQ0MDg0MDkyfQ.bDiEvZzkwFeMwSo-_I7728IEGCvxA_W8tMyxmJWNNN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Estudiar Spring Boot y Swagger\",\n  \"description\": \"Ya agregué OpenAPI\",\n  \"statusId\": 3\n}"
+				},
+				"url": {
+					"raw": "{{host}}/tasks/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6 - Eliminar tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0Mzk5NzY5MiwiZXhwIjoxNzQ0MDg0MDkyfQ.bDiEvZzkwFeMwSo-_I7728IEGCvxA_W8tMyxmJWNNN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/tasks/5",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tasks",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "jwt",
+			"value": ""
+		}
+	]
+}

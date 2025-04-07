@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:tasksdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+jwt:
+  secret: rgGIw+y1c0/siALR/MXOKFTqZd12D8IemviEuk+291U=
+  expiration: 86400000

@@ -1,0 +1,217 @@
+openapi: "3.0.0"
+info:
+  title: API de Gestión de Tareas
+  version: "1.0.0"
+  description: API para autenticar usuarios y gestionar tareas con seguridad JWT.
+servers:
+  - url: "http://localhost:8080"
+    description: Servidor local de desarrollo
+security:
+  - bearerAuth: []
+paths:
+  /auth/login:
+    post:
+      operationId: loginUser
+      summary: Inicio de sesión de usuario
+      description: Autentica a un usuario y devuelve un token JWT si las credenciales son válidas.
+      security: []  # IMPORTANTE: permite acceso sin token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Autenticación exitosa. Devuelve el token JWT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+        "400":
+          description: Solicitud incorrecta (credenciales inválidas).
+        "401":
+          description: No autorizado (usuario o contraseña incorrectos).
+  /tasks:
+    get:
+      operationId: getAllTasks
+      summary: Listar tareas
+      description: Recupera todas las tareas del sistema.
+      responses:
+        "200":
+          description: Lista de tareas obtenida exitosamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Task"
+        "401":
+          description: No autorizado.
+    post:
+      operationId: createTask
+      summary: Crear tarea
+      description: Crea una nueva tarea.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaskCreate"
+      responses:
+        "201":
+          description: Tarea creada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+        "400":
+          description: Solicitud incorrecta.
+        "401":
+          description: No autorizado.
+  /tasks/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID de la tarea.
+    get:
+      operationId: getTaskById
+      summary: Obtener tarea
+      description: Obtiene una tarea específica según su ID.
+      responses:
+        "200":
+          description: Tarea encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+        "401":
+          description: No autorizado.
+        "404":
+          description: Tarea no encontrada.
+    put:
+      operationId: updateTaskById
+      summary: Actualizar tarea
+      description: Actualiza una tarea existente.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaskUpdate"
+      responses:
+        "200":
+          description: Tarea actualizada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+        "400":
+          description: Solicitud incorrecta.
+        "401":
+          description: No autorizado.
+        "404":
+          description: Tarea no encontrada.
+    delete:
+      operationId: deleteTaskById
+      summary: Eliminar tarea
+      description: Elimina una tarea existente por su ID.
+      responses:
+        "204":
+          description: Tarea eliminada exitosamente.
+        "401":
+          description: No autorizado.
+        "404":
+          description: Tarea no encontrada.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+        - username
+        - password
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Token de acceso JWT.
+      required:
+        - token
+    TaskStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      required:
+        - id
+        - name
+    UserSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        name:
+          type: string
+      required:
+        - id
+        - username
+        - name
+    Task:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          $ref: "#/components/schemas/TaskStatus"
+        assignedTo:
+          $ref: "#/components/schemas/UserSummary"
+      required:
+        - id
+        - title
+        - status
+    TaskCreate:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        statusId:
+          type: integer
+        assignedToId:
+          type: integer
+      required:
+        - title
+    TaskUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        statusId:
+          type: integer
+        assignedToId:
+          type: integer

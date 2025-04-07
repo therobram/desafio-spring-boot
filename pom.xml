@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.4.5-SNAPSHOT</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <groupId>com.nuevo</groupId>
+  <artifactId>taskmanager</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>task-manager</name>
+  <description>API REST para gestión de tareas - Desafío NUEVO SPA</description>
+
+  <properties>
+    <java.version>17</java.version>
+    <openapi-generator.version>6.6.0</openapi-generator.version>
+  </properties>
+
+  <dependencies>
+  <!-- Web -->
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+  </dependency>
+
+  <!-- JPA + H2 -->
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+  </dependency>
+  <dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <scope>runtime</scope>
+  </dependency>
+
+  <!-- Seguridad -->
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+  </dependency>
+
+  <!-- Springdoc OpenAPI (Swagger UI) -->
+  <dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.8.5</version>
+  </dependency>
+
+  <!-- JWT (Java JWT - JJWT) -->
+  <dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-api</artifactId>
+    <version>0.11.5</version>
+  </dependency>
+  <dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-impl</artifactId>
+    <version>0.11.5</version>
+    <scope>runtime</scope>
+  </dependency>
+  <dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-jackson</artifactId>
+    <version>0.11.5</version>
+    <scope>runtime</scope>
+  </dependency>
+
+  <!-- Lombok -->
+  <dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <optional>true</optional>
+  </dependency>
+
+  <!-- JSON nullable support -->
+  <dependency>
+    <groupId>org.openapitools</groupId>
+    <artifactId>jackson-databind-nullable</artifactId>
+    <version>0.2.6</version>
+  </dependency>
+
+  <!-- TESTING -->
+  <dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter</artifactId>
+    <version>5.10.0</version>
+    <scope>test</scope>
+  </dependency>
+  <dependency>
+    <groupId>org.assertj</groupId>
+    <artifactId>assertj-core</artifactId>
+    <version>3.24.2</version>
+    <scope>test</scope>
+  </dependency>
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-test</artifactId>
+    <scope>test</scope>
+    <exclusions>
+      <exclusion>
+        <groupId>org.junit.vintage</groupId>
+        <artifactId>junit-vintage-engine</artifactId>
+      </exclusion>
+    </exclusions>
+  </dependency>
+  <dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-test</artifactId>
+    <scope>test</scope>
+  </dependency>
+  
+  <dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+  </dependency>
+  <dependency>
+    <groupId>jakarta.validation</groupId>
+    <artifactId>jakarta.validation-api</artifactId>
+  </dependency>
+
+
+</dependencies>
+
+
+  <build>
+    <plugins>
+      <!-- Spring Boot Plugin -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+
+      <!-- OpenAPI Generator Plugin (API First) -->
+      <plugin>
+        <groupId>org.openapitools</groupId>
+        <artifactId>openapi-generator-maven-plugin</artifactId>
+        <version>${openapi-generator.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
+              <generatorName>spring</generatorName>
+              <library>spring-boot</library>
+              <apiPackage>com.nuevo.taskmanager.api</apiPackage>
+              <modelPackage>com.nuevo.taskmanager.api.model</modelPackage>
+              <configOptions>
+                <interfaceOnly>true</interfaceOnly>
+                <useSpringBoot3>true</useSpringBoot3>
+                <useJakartaEe>true</useJakartaEe>
+              </configOptions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Compiler plugin con -parameters -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <compilerArgs>
+            <arg>-parameters</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>spring-snapshots</id>
+      <name>Spring Snapshots</name>
+      <url>https://repo.spring.io/snapshot</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>spring-snapshots</id>
+      <name>Spring Snapshots</name>
+      <url>https://repo.spring.io/snapshot</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>
+
+</project>

@@ -1,72 +1,97 @@
-# Desafío Técnico: Gestión de Tareas con Spring Boot y Java
+# Entrega Final - Desafío Técnico NUEVO SPA
 
-La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
+## 🌟 Información General
 
-## Objetivo:
-Crear una API RESTful utilizando Spring Boot que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
+**Nombre:** Roberto Ramírez Romero
+**Correo:** rramirezr2005@gmail.com  
+**Cargo al que postula:** Backend Developer Java / Spring Boot
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+---
 
-### Spring Boot 3.4.x:
-- Construye la aplicación utilizando Spring Boot 3.4.x (última versión disponible).
+## 🚀 Tecnologías Utilizadas
 
-### Base de Datos:
+- Java 17
+- Spring Boot 3.4.5
+- Maven
+- Spring Security con JWT
+- Spring Data JPA
+- Base de datos en memoria H2
+- OpenAPI 3 + Swagger UI
+- API First con openapi-generator
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+---
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+## 💳 Estructura del Proyecto
 
-### JWT (JSON Web Token):
+- `entity/`: Entidades JPA `User`, `Task`, `TaskStatus`
+- `dto/`: DTOs para creación, respuesta y actualización de tareas y login
+- `repository/`: Repositorios JPA
+- `service/`: Servicio de tareas y seguridad JWT
+- `controller/`: Controladores REST de autenticación y tareas
+- `security/`: Filtros, providers y servicios para JWT y autenticación
+- `config/`: Seguridad y carga de datos iniciales (usuarios + estados)
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
+---
 
-### OpenAPI y Swagger:
+## 🔐 Seguridad con JWT
 
-- Documenta la API utilizando OpenAPI y Swagger.
+- Endpoint de login en `/auth/login` devuelve un JWT válido.
+- Endpoints de tareas están protegidos por `JwtAuthFilter`.
+- Token JWT se valida en cada request.
 
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
+---
 
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
+## 🏃️ CRUD de Tareas
 
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
+- `GET /tasks` → listar tareas del usuario autenticado
+- `GET /tasks/{id}` → Ver una tarea
+- `POST /tasks` → crear tarea
+- `PUT /tasks/{id}` → actualizar tarea (solo suya)
+- `DELETE /tasks/{id}` → eliminar tarea (solo suya)
 
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
+---
 
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
+## 🌐 Documentación Swagger / OpenAPI
 
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
+- Accede a [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+- Generado automáticamente con springdoc-openapi-starter 2.8.5 (compatible con Spring Boot 3.4.x)
 
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
+---
 
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
-- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
+## 🔹 Ejecución del Proyecto
 
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
+```bash
+# Clonar el repositorio
+$ git clone https://github.com/therobram/desafio-spring-boot.git
+$ cd desafio-spring-boot
 
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 3.4.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
-- **Puntos extras si la generación de la API se realizo mediante API First**
+# Compilar y ejecutar
+$ mvn clean install
+$ mvn spring-boot:run
+```
+
+---
+
+## 👥 Usuarios precargados (en H2)
+
+- `admin` / `admin123`
+- `user` / `user123`
+
+Consola H2: [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+- JDBC URL: `jdbc:h2:mem:taskdb`
+- Usuario: `sa`
+- Password: *(vacío)*
+
+---
+
+## 📂 Archivos Incluidos
+
+- `openapi.yml` → definición de la API (API First)
+- `Task Manager API - Desafío NUEVO SPA.postman_collection.json` → colección de Postman completa
+- `README.md` profesional con instrucciones
+
+---
+
+📅 **Fecha de entrega:** 2025-04-07  
+🙌 **Gracias por su consideración.**
+
